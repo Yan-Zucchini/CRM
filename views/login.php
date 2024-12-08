@@ -13,16 +13,16 @@ if (isset($_POST['login'])) {
 
     if ($user && password_verify($password, $user['password'])) {
         // Login bem-sucedido
-        $_SESSION['user'] = $user['user'];
+        $_SESSION['user_id'] = $user['id']; // Armazena o ID do usuário
+        $_SESSION['user_name'] = $user['user']; // Nome do usuário, se necessário
         header("Location: home.php"); // Redireciona para a página inicial
         exit;
     } else {
         // Login falhou
-        $erro = "Usuário ou senha incorretos.";
+        $erro = "Credenciais inválidas.";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

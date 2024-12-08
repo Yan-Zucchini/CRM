@@ -1,6 +1,14 @@
 <?php
 include '../config/db.php';
 
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recebe os dados do formulário
     $cliente_id = $_POST['cliente_id'];

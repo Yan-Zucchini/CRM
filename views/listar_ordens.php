@@ -1,6 +1,14 @@
 <?php
 include '../config/db.php'; // Inclui a configuração do banco de dados
 
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
 // Inicializa variáveis de pesquisa
 $search = $_GET['search'] ?? '';
 $column = $_GET['column'] ?? 'id';

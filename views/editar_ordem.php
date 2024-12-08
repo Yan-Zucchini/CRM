@@ -1,6 +1,14 @@
 <?php
 include '../config/db.php'; // Inclui a configuração do banco de dados
 
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
 // Obtém o ID da ordem de serviço a ser editada
 $id = $_GET['id'] ?? null;
 
