@@ -1,7 +1,6 @@
 <?php
 include '../config/db.php'; // Inclui a configuração do banco de dados
 
-
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -81,6 +80,113 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Ordem de Serviço</title>
     <link rel="stylesheet" href="../assets/css/estilo.css">
+    <style>
+        /* Resetando margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            color: #34495e;
+        }
+
+        input[type="text"], input[type="email"], input[type="datetime-local"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        /* Ajustando layout para os campos de forma mais horizontal */
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .input-container > div {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* Ajustando botões */
+        button {
+            width: 48%;
+            padding: 12px;
+            background-color: #16a085;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        button[type="submit"]:nth-child(2) {
+            background-color: #e74c3c;
+        }
+
+        button[type="submit"]:nth-child(2):hover {
+            background-color: #c0392b;
+        }
+
+        button[type="button"] {
+            background-color: #3498db;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button[type="button"]:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #2ecc71;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
@@ -92,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         ?>
         <form action="" method="POST">
             <input type="hidden" name="action" value="update">
-
+            
             <label for="cliente_id">Cliente:</label>
             <select name="cliente_id" id="cliente_id" required>
                 <?php
@@ -128,10 +234,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             <label for="observacoes">Observações:</label>
             <textarea name="observacoes" id="observacoes"><?= htmlspecialchars($ordem['observacoes'] ?? '') ?></textarea><br>
 
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <div style="display: flex; gap: 20px; justify-content: space-between;">
                 <button type="submit">Salvar</button>
-                <button type="submit" name="action" value="delete" style="background-color: red; color: white;">Deletar</button>
+                <button type="submit" name="action" value="delete">Deletar</button>
             </div>
+        </form>
+
+        <!-- Botão de Voltar -->
+        <form action="listar_ordens.php" method="get">
+            <button type="button" onclick="window.location.href='listar_ordens.php'">Voltar para a Lista</button>
         </form>
     </div>
 </body>

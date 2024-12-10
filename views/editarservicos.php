@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -74,6 +75,113 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Serviço</title>
     <link rel="stylesheet" href="../assets/css/estilo.css">
+    <style>
+        /* Resetando margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #2c3e50; /* cor do título */
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            color: #34495e; /* cor do texto dos campos */
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Ajustando layout para os campos de forma mais horizontal */
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .input-container > div {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* Ajustando botões */
+        button {
+            width: 48%;
+            padding: 12px;
+            background-color: #16a085; /* verde para salvar */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        button[type="submit"]:nth-child(2) {
+            background-color: #e74c3c; /* vermelho para deletar */
+        }
+
+        button[type="submit"]:nth-child(2):hover {
+            background-color: #c0392b;
+        }
+
+        button[type="button"] {
+            background-color: #3498db; /* azul para voltar */
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button[type="button"]:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #2ecc71; /* cor verde para a mensagem de sucesso */
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
@@ -85,27 +193,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         ?>
         <form action="" method="POST">
             <input type="hidden" name="action" value="update">
-            <label for="nome">Nome do Serviço:</label>
-            <input type="text" name="nome" id="nome" value="<?= htmlspecialchars($servico['nome']) ?>" required>
+            
+            <div class="input-container">
+                <div>
+                    <label for="nome">Nome do Serviço:</label>
+                    <input type="text" name="nome" id="nome" value="<?= htmlspecialchars($servico['nome']) ?>" required>
+                </div>
+            </div>
 
-            <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="descricao" rows="4" required><?= htmlspecialchars($servico['descricao']) ?></textarea>
+            <div class="input-container">
+                <div>
+                    <label for="descricao">Descrição:</label>
+                    <textarea name="descricao" id="descricao" rows="4" required><?= htmlspecialchars($servico['descricao']) ?></textarea>
+                </div>
+            </div>
 
-            <label for="preco">Preço (R$):</label>
-            <input type="text" name="preco" id="preco" maxlength="10" value="<?= number_format($servico['preco'], 2, ',', '.') ?>" required>
+            <div class="input-container">
+                <div>
+                    <label for="preco">Preço (R$):</label>
+                    <input type="text" name="preco" id="preco" value="<?= number_format($servico['preco'], 2, ',', '.') ?>" required>
+                </div>
+            </div>
 
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <div style="display: flex; gap: 20px; justify-content: space-between;">
                 <button type="submit">Salvar</button>
-                <button type="submit" name="action" value="delete" style="background-color: red; color: white;">Deletar</button>
+                <button type="submit" name="action" value="delete">Deletar</button>
             </div>
         </form>
+        
+        <!-- Botão de Voltar -->
+        <form action="listar_servicos.php" method="get">
+            <button type="button" onclick="window.location.href='listar_servicos.php'">Voltar para a Lista</button>
+        </form>
     </div>
-    <script>
-        // Máscara para preço
-        document.getElementById('preco').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
-            e.target.value = value.replace(/(\d)(\d{2})$/, '$1,$2').replace(/(?=(\d{3})+(\D))\B/g, '.'); // Formata o valor com ponto e vírgula
-        });
-    </script>
 </body>
 </html>
