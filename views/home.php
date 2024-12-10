@@ -128,6 +128,21 @@ if (!isset($_SESSION['user_id'])) {
         .btn:hover {
             background-color: #16a085;
         }
+
+        a {
+            color: #1abc9c;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #16a085;
+        }
+
+        .no-results {
+            font-size: 18px;
+            color: #e74c3c;
+            margin-top: 20px;
     </style>
 </head>
 <body>

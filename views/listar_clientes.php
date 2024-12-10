@@ -118,6 +118,8 @@ try {
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            overflow-x: auto; /* Adiciona a rolagem horizontal */
+            max-width: 100%; /* Garante que não ultrapasse o container pai */
         }
 
         form {
@@ -190,7 +192,7 @@ try {
             <li><a href="cadastrar_cliente.php">Cadastrar Cliente</a></li>
             <li><a href="cadastrar_servicos.php">Cadastrar Serviços</a></li>
             <li><a href="criar_ordem.php">Criar Ordem</a></li>
-            <li><a href="login.php">Sair</a></li>
+            <li><a href="../core/logout.php">Sair</a></li>
         </ul>
     </nav>
     <div class="content">

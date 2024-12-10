@@ -118,7 +118,8 @@ try {
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            overflow-x: auto; /* Adiciona a rolagem horizontal */
+            max-width: 100%; /* Garante que não ultrapasse o container pai */
         }
 
         .card h2 {
@@ -174,6 +175,21 @@ try {
         .search-container button:hover {
             background-color: #16a085;
         }
+
+        a {
+            color: #1abc9c;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #16a085;
+        }
+
+        .no-results {
+            font-size: 18px;
+            color: #e74c3c;
+            margin-top: 20px;
     </style>
 </head>
 <body>
@@ -183,7 +199,7 @@ try {
             <li><a href="cadastrar_cliente.php">Cadastrar Cliente</a></li>
             <li><a href="cadastrar_servicos.php">Cadastrar Serviços</a></li>
             <li><a href="criar_ordem.php">Criar Ordem</a></li>
-            <li><a href="login.php">Sair</a></li>
+            <li><a href="../code/logout.php">Sair</a></li>
         </ul>
     </nav>
 
