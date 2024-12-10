@@ -27,7 +27,7 @@ try {
             JOIN clientes ON ordens_servico.cliente_id = clientes.id
             JOIN servicos ON ordens_servico.servico_id = servicos.id
             WHERE $column LIKE :search
-            ORDER BY ordens_servico.id ASC
+            ORDER BY ordens_servico.data_hora ASC
         ");
         $query->execute(['search' => "%$search%"]);
     } else {
@@ -36,7 +36,7 @@ try {
             FROM ordens_servico
             JOIN clientes ON ordens_servico.cliente_id = clientes.id
             JOIN servicos ON ordens_servico.servico_id = servicos.id
-            ORDER BY ordens_servico.id ASC
+            ORDER BY ordens_servico.data_hora ASC
         ");
     }
     $ordens = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -207,7 +207,7 @@ try {
 </head>
 <body>
     <nav>
-        <h1><a href="home.php" style="color: white; text-decoration: none;">CRM System</a></h1>
+        <h1><a href="home.php" style="color: white; text-decoration: none;">CRM </a></h1>
         <ul>
             <li><a href="cadastrar_cliente.php">Cadastrar Cliente</a></li>
             <li><a href="cadastrar_servicos.php">Cadastrar Serviços</a></li>

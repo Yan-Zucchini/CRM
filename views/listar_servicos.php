@@ -194,7 +194,7 @@ try {
 </head>
 <body>
     <nav>
-        <h1><a href="home.php" style="color: white; text-decoration: none;">CRM System</a></h1>
+        <h1><a href="home.php" style="color: white; text-decoration: none;">CRM </a></h1>
         <ul>
             <li><a href="cadastrar_cliente.php">Cadastrar Cliente</a></li>
             <li><a href="cadastrar_servicos.php">Cadastrar Serviços</a></li>

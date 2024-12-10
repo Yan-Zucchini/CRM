@@ -147,7 +147,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <nav>
-        <h1>CRM System</h1>
+        <h1>CRM </h1>
         <ul>
             <li><a href="cadastrar_cliente.php">Cadastrar Cliente</a></li>
             <li><a href="cadastrar_servicos.php">Cadastrar Serviços</a></li>
